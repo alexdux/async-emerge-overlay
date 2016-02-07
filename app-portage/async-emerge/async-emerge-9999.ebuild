@@ -39,7 +39,7 @@ RDEPEND="|| ( sys-fs/aufs3 sys-fs/aufs4 )
 
 src_configure() {
 	AE_CONF="${S}/etc/async.emerge.conf"
-	if [ "${PV}" == "9999" ]; then 
+	if [ "-${SRC_URI}-" == "--" ]; then 
 		AE_CONF="/trunk${AE_CONF}"
 	fi
 	# to-do: add checking FEATURES & EMERGE_DEFAULT_OPTS
