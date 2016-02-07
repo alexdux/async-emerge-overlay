@@ -8,14 +8,17 @@ inherit eutils
 if [ "${PV}" == "9999" ]; then
     inherit subversion
     SRC_URI=""
-    ESVN_REPO_URI="http://async-emerge.googlecode.com/svn/trunk/"
+    #ESVN_REPO_URI="http://async-emerge.googlecode.com/svn/trunk/"
+    EGIT_REPO_URI="https://github.com/alexdux/async-emerge/trunk/"
+    EGIT_BRANCH="master"
     KEYWORDS=""
 else
-    SRC_URI="http://async-emerge.googlecode.com/svn/distfiles/${P}.tar.bz2"
+    #SRC_URI="http://async-emerge.googlecode.com/svn/distfiles/${P}.tar.bz2"
+    SRC_URI="https://raw.github.com/alexdux/async-emerge/master/distfiles/${P}.tar.bz2"
     KEYWORDS="amd64 x86"
 fi
 
-HOMEPAGE="http://code.google.com/p/async-emerge/"
+HOMEPAGE="https://github.com/alexdux/async-emerge"
 DESCRIPTION="Periodically sync portage and build binary packages for Gentoo updates."
 LICENSE="GPL-2"
 SLOT="0"
