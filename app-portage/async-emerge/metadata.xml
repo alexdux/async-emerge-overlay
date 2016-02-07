@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <herd>tools-portage</herd>
+    <maintainer>
+        <email>alexdu.com.ae@gmail.com</email>
+        <name>Alex Dubenetsky</name>
+    </maintainer>
+    <use>
+        <flag name="noemail">Don't install net-mail/email.</flag>
+        <flag name="notmpfs">Don't mount tmpfs disk for packages building by default.</flag>
+        <flag name="logrotate">Install config for logrotate support.</flag>
+        <flag name="aufs">Add AUFS functionality. (needed for standart usage)</flag>
+    </use>
+</pkgmetadata>
