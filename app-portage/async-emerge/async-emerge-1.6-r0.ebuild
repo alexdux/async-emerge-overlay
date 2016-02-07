@@ -6,7 +6,8 @@ EAPI=4
 inherit eutils
 
 if [ "${PV}" == "9999" ]; then
-    inherit subversion
+    #inherit subversion
+    inherit git-r3
     SRC_URI=""
     #ESVN_REPO_URI="http://async-emerge.googlecode.com/svn/trunk/"
     EGIT_REPO_URI="https://github.com/alexdux/async-emerge/trunk/"
