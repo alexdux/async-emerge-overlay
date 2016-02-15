@@ -95,8 +95,8 @@ src_prepare() {
 	kernel_is ge 3 19 0 && epatch "${FILESDIR}/${PV_MAJOR}-3.19-05-vmci_qpair.patch"
 	kernel_is ge 3 19 0 && epatch "${FILESDIR}/${PV_MAJOR}-3.19-06-vsock.patch"
 	kernel_is ge 3 19 0 && epatch "${FILESDIR}/${PV_MAJOR}-3.19-07-vsock.patch"
-	kernel_is ge 4 2 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.2-*.patch"
-	kernel_is ge 4 3 0 && epatch "${FILESDIR}/${PV_MAJOR}-4.3-*.patch"
+	kernel_is ge 4 2 0 && epatch "${FILESDIR}/${PV_MAJOR}"-4.2-*.patch
+	kernel_is ge 4 3 0 && epatch "${FILESDIR}/${PV_MAJOR}"-4.3-*.patch
 
 	# Allow user patches so they can support RC kernels and whatever else
 	epatch_user
