@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name><![CDATA[async-emerge]]></name>
+    <description lang="en"><![CDATA[Overlay for Async Emerge - asynchronous multiple binaries cooker for Gentoo. Comments and bugreports are welcome!]]></description>
+    <homepage>https://github.com/alexdux/async-emerge</homepage>
+    <owner type="person">
+      <email>alexdu.com.ae@gmail.com</email>
+      <name><![CDATA[Alex Dubenetsky]]></name>
+    </owner>
+    <source type="git">https://github.com/alexdux/async-emerge-overlay.git</source>
+    <feed>https://github.com/alexdux/async-emerge-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
+
