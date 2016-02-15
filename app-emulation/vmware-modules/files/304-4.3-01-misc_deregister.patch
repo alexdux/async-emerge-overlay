@@ -1,0 +1,37 @@
+--- vmci-only/linux/driver.c.orig	2015-11-07 09:39:23.714641080 +0200
++++ vmci-only/linux/driver.c	2015-11-07 09:40:05.821642080 +0200
+@@ -2484,13 +2484,16 @@
+ 
+       VMCI_HostCleanup();
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 3, 0)
++      misc_deregister(&linuxState.misc);
++#else
+       retval = misc_deregister(&linuxState.misc);
+       if (retval) {
+          Warning(LGPFX "Module %s: error unregistering\n", VMCI_MODULE_NAME);
+       } else {
+          Log(LGPFX"Module %s: unloaded\n", VMCI_MODULE_NAME);
+       }
+-
++#endif
+       hostDeviceInit = FALSE;
+    }
+ 
+--- vmmon-only/linux/driver.c.orig	2015-11-07 09:40:19.577642407 +0200
++++ vmmon-only/linux/driver.c	2015-11-07 09:40:49.626643122 +0200
+@@ -400,10 +400,14 @@
+ #ifdef VMX86_DEVEL
+    unregister_chrdev(linuxState.major, linuxState.deviceName);
+ #else
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 2, 0)
++   misc_deregister(&linuxState.misc);
++#else
+    if (misc_deregister(&linuxState.misc)) {
+       Warning("Module %s: error unregistering\n", linuxState.deviceName);
+    }
+ #endif
++#endif
+ 
+    Log("Module %s: unloaded\n", linuxState.deviceName);
+ 
