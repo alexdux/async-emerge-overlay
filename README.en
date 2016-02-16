@@ -6,7 +6,7 @@ Use this repo to add AE to Gentoo.
 Fast add:
 1. # cat > /etc/portage/repos.conf/async-emerge.conf
 [async-emerge]
-location = /usr/portage/overlays/async-emerge/
+location = /usr/overlays/async-emerge/
 sync-type = git
 sync-uri = https://github.com/alexdux/async-emerge-overlay.git
 auto-sync = true
