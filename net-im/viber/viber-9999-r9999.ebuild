@@ -1,4 +1,5 @@
 # Copyright open-overlay 2015 by Alex
+# async-emerge 2016 alexdu
 
 EAPI="5"
 
@@ -15,7 +16,7 @@ S="${WORKDIR}"
 
 src_unpack() {
 	default_src_unpack
-	unpack ./data.tar.gz
+	unpack ./data.tar.xz
 	epatch "${FILESDIR}/viber-9999-desktop.patch"
 }
 
