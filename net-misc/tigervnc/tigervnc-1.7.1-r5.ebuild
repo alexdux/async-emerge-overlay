@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="6"
 
@@ -8,25 +7,26 @@ CMAKE_IN_SOURCE_BUILD=1
 
 inherit autotools cmake-utils eutils flag-o-matic java-pkg-opt-2 systemd
 
-XSERVER_VERSION="1.18.4"
+XSERVER_VERSION="1.19.1"
 
 DESCRIPTION="Remote desktop viewer display system"
 HOMEPAGE="http://www.tigervnc.org"
 SRC_URI="https://github.com/TigerVNC/tigervnc/archive/v${PV}.tar.gz -> ${P}.tar.gz
-	mirror://gentoo/${PN}.png
 	https://dev.gentoo.org/~armin76/dist/tigervnc-1.4.2-patches-0.1.tar.bz2
+	mirror://gentoo/${PN}.png
 	server? ( ftp://ftp.freedesktop.org/pub/xorg/individual/xserver/xorg-server-${XSERVER_VERSION}.tar.bz2	)"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="alpha amd64 ~arm hppa ~ia64 ~mips ~ppc ppc64 ~sh ~sparc x86"
-IUSE="+drm gnutls java +opengl pam server +xorgmodule"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86"
+IUSE="+drm gnutls nls java +opengl pam server +xorgmodule"
 
 CDEPEND="virtual/jpeg:0
 	sys-libs/zlib
 	>=x11-libs/libXtst-1.0.99.2
 	>=x11-libs/fltk-1.3.1
 	gnutls? ( net-libs/gnutls:= )
+	nls? ( virtual/libiconv )
 	pam? ( virtual/pam )
 	server? (
 		dev-lang/perl
@@ -44,17 +44,19 @@ CDEPEND="virtual/jpeg:0
 	)"
 
 RDEPEND="${CDEPEND}
-	java? ( >=virtual/jre-1.5:* )
-	!net-misc/vnc
 	!net-misc/tightvnc
-	!net-misc/xf4vnc"
+	!net-misc/vnc
+	!net-misc/xf4vnc
+	java? ( >=virtual/jre-1.5:* )"
 
 DEPEND="${CDEPEND}
 	amd64? ( dev-lang/nasm )
 	x86? ( dev-lang/nasm )
 	>=x11-proto/inputproto-2.2.99.1
 	>=x11-proto/xextproto-7.2.99.901
-	>=x11-proto/xproto-7.0.26
+	>=x11-proto/xproto-7.0.31
+	x11-libs/libXfont2
+	nls? ( sys-devel/gettext )
 	java? ( >=virtual/jdk-1.5 )
 	server?	(
 		virtual/pkgconfig
@@ -91,9 +93,11 @@ src_prepare() {
 
 	default
 
-	if use server ; then
+	if use server; then
+		eapply "${FILESDIR}/${PN}-1.7.1-xserver119-compat.patch"
 		cd unix/xserver || die
-		eapply ../xserver118.patch
+		eapply "${FILESDIR}/xserver119.patch"
+		eapply "${FILESDIR}/712cf8673d6e57442f41636e44020f5e1839c7f8.patch"
 		eautoreconf
 	fi
 }
@@ -103,6 +107,7 @@ src_configure() {
 
 	local mycmakeargs=(
 		-DENABLE_GNUTLS=$(usex gnutls)
+		-DENABLE_NLS=$(usex nls)
 		-DENABLE_PAM=$(usex pam)
 		-DBUILD_JAVA=$(usex java)
 	)
@@ -180,7 +185,7 @@ src_install() {
 	else
 		local f
 		cd "${ED}" || die
-		for f in vncserver vncpasswd x0vncserver vncconfig; do
+		for f in vncserver x0vncserver vncconfig; do
 			rm usr/bin/$f || die
 			rm usr/share/man/man1/$f.1 || die
 		done
