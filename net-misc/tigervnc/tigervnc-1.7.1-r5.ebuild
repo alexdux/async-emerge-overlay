@@ -97,7 +97,6 @@ src_prepare() {
 		eapply "${FILESDIR}/${PN}-1.7.1-xserver119-compat.patch"
 		cd unix/xserver || die
 		eapply "${FILESDIR}/xserver119.patch"
-		eapply "${FILESDIR}/712cf8673d6e57442f41636e44020f5e1839c7f8.patch"
 		eautoreconf
 	fi
 }
@@ -147,6 +146,7 @@ src_configure() {
 			--without-dtrace \
 			--disable-present \
 			--disable-unit-tests
+		eapply "${FILESDIR}/712cf8673d6e57442f41636e44020f5e1839c7f8.patch"
 	fi
 }
 
