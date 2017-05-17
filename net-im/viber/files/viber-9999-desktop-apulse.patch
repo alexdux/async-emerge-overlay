@@ -1,11 +1,11 @@
---- a/usr/share/applications/viber.desktop	2016-04-20 09:49:26.000000000 +0300
-+++ b/usr/share/applications/viber.desktop	2016-04-20 09:47:24.000000000 +0300
+--- a/usr/share/applications/viber.desktop	2017-01-16 17:49:00.000000000 +0300
++++ a/usr/share/applications/viber.desktop	2017-05-17 14:59:53.000000000 +0300
 @@ -1,7 +1,7 @@
  [Desktop Entry]
  Name=Viber
  Comment=Viber VoIP and messenger
--Exec=/opt/viber/Viber
-+Exec=apulse /opt/viber/Viber
+-Exec=/opt/viber/Viber %u
++Exec=apulse /opt/viber/Viber %u
  Icon=/usr/share/pixmaps/viber.png
  Terminal=false
  Type=Application
