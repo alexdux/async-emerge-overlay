@@ -1,7 +1,0 @@
-/var/log/wmr.log {
-    copytruncate
-    size 32k
-    missingok
-    sharedscripts
-}
-
