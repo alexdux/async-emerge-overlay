@@ -1,7 +1,6 @@
-app-emulation
-app-misc
 app-portage
 media-gfx
 media-plugins
-net-im
+media-tv
+net-misc
 sys-firmware
