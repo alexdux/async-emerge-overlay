@@ -28,13 +28,12 @@ IUSE="logrotate noemail notmpfs" # "eix layman"
 RESTRICT="mirror"
 #RESTRICT="fetch"
 
-RDEPEND="|| ( sys-fs/aufs4 )
-			app-portage/gentoolkit
-			app-shells/bash
-			app-portage/eix
-			sys-process/lsof
-			sys-apps/util-linux
-			!noemail? ( net-mail/email )"
+RDEPEND="app-portage/gentoolkit
+	app-shells/bash
+	app-portage/eix
+	sys-process/lsof
+	sys-apps/util-linux
+	!noemail? ( net-mail/email )"
 #DEPEND="${RDEPEND}"
 
 src_configure() {
