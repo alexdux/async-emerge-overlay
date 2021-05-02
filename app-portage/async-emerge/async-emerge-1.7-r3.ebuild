@@ -28,7 +28,7 @@ IUSE="logrotate noemail notmpfs" # "eix layman"
 RESTRICT="mirror"
 #RESTRICT="fetch"
 
-RDEPEND="|| ( sys-fs/aufs3 sys-fs/aufs4 )
+RDEPEND="|| ( sys-fs/aufs4 )
 			app-portage/gentoolkit
 			app-shells/bash
 			app-portage/eix
