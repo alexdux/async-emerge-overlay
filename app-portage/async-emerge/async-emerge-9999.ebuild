@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 inherit eutils
 
 if [ "${PV}" == "9999" ]; then
@@ -28,7 +28,8 @@ IUSE="logrotate noemail notmpfs" # "eix layman"
 RESTRICT="mirror"
 #RESTRICT="fetch"
 
-RDEPEND="app-portage/gentoolkit
+RDEPEND="|| ( sys-fs/aufs3 sys-fs/aufs4 )
+			app-portage/gentoolkit
 			app-shells/bash
 			app-portage/eix
 			sys-process/lsof
