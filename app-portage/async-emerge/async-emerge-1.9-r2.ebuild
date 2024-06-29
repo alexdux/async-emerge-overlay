@@ -71,11 +71,14 @@ src_configure() {
 			die "Can't adjust AE_REBUILD[DO_PRESERVED_REBUILD]! Stop."
 	fi
 	# get some portage vars
-	grep -o '`portageq .*`' "${AE_CONF}" | cut -f2 -d'`' | \
-		while read str_todo; do 
-			sed -i -e "s@\`${str_todo}\`@`${str_todo}`@" "${AE_CONF}" || \
-				die "Can't exec '${str_todo}'! Stop." # '
-		done
+	#grep -o '`portageq .*`' "${AE_CONF}" | cut -f2 -d'`' | \
+	#	while read str_todo; do 
+	#		sed -i -e "s@\`${str_todo}\`@`${str_todo}`@" "${AE_CONF}" || \
+	#			die "Can't exec '${str_todo}'! Stop." # '
+	#	done
+	sed -i -e "s/^\(AE_DIR\[PKGDIR\]=\)\"`portageq pkgdir`\"/\1$(emerge --info | grep PKGDIR | cut -f2 -d'=')/" "${AE_CONF}" || \
+		die "Can't adjust AE_DIR[PKGDIR]! Stop."
+
 	# disable ccache if not installed (not tested)
 	[ "$CCACHE_DIR" ] || \
 		sed -i -e "s/^\(AE_DIR\[TRANSPARENT\]+=\" $CCACHE_DIR\"\)/#\1/" "${AE_CONF}" || \
@@ -95,7 +98,7 @@ src_install() {
 	#if has_version "app-admin/logrotate"; then
 	if use logrotate ; then
 		dodir /etc/logrotate.d/
-		cp -R ${S}/etc/logrotate.d/* ${D}/etc/logrotate.d/ || die
+		cp -R ${S}/etc/logrotate.d/* ${D}/etc/logrotate.d/ || die                                  
 		keepdir /var/log/async.emerge/archive
 	fi
 	# make_linux
