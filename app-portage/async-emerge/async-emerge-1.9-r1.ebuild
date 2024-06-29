@@ -2,9 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+<<<<<<<< HEAD:app-portage/async-emerge/async-emerge-1.9-r1.ebuild
 EAPI=8
 inherit 
 #eutils
+========
+EAPI=6
+inherit eutils
+>>>>>>>> 897793809a1c8e5dd00c484995feb959cad57c34:app-portage/async-emerge/async-emerge-1.8-r1.ebuild
 
 if [ "${PV}" == "9999" ]; then
     inherit git-r3
