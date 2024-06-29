@@ -76,6 +76,7 @@ src_configure() {
 	#		sed -i -e "s@\`${str_todo}\`@`${str_todo}`@" "${AE_CONF}" || \
 	#			die "Can't exec '${str_todo}'! Stop." # '
 	#	done
+	echo "s/^\(AE_DIR\[PKGDIR\]='\)/\1$PKGDIR/"
 	sed -i -e "s/^\(AE_DIR\[PKGDIR\]='\)/\1$PKGDIR/" "${AE_CONF}" || \
 		die "Can't adjust AE_DIR[PKGDIR]! Stop."
 
